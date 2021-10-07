@@ -62,17 +62,6 @@ class Logs {
         $this->database->execute();
     }
 
-    /**
-     * Dakikada 30 adet istek kontrolü
-     */
-    public function totalApiRequest(){
-        $endDate = date("Y-m-d H:i:s");
-        $startDate = date("Y-m-d H:i:s",strtotime('-1 minute',strtotime($endDate)));
-       
-        $this->database->query("SELECT COUNT(id) as total, MIN(created_at) as created_at FROM logs WHERE created_at BETWEEN '".$startDate."' AND '".$endDate."'");
-        $rows = $this->database->getSingleRow();
-        return $rows;
-    }
 }
 
 ?>

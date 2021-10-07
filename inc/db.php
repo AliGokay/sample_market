@@ -19,7 +19,7 @@ class Database {
      * @param [type] $name    [veritabanı adı]
      * @param [type] $user    [veritabanı kullanıcısı adı]
      * @param [type] $pass    [veritabanı kullanıcısı şifre]
-     * @param string $charset [default utf8 çok lazım olursa ezebilirsiniz.]
+     * @param string $charset [default utf8 lazım olursa ezebilirsiniz.]
      */
     public function __construct($host,$name,$user,$pass,$charset="utf8"){
 
@@ -31,15 +31,12 @@ class Database {
     }
     /**
      * [bağlantıyı private $db değişkenine atar. ]
-     * @param  array  $optionArray [bağlantı yaparken canınınız çekiyorsa DSN options'ı array olarak gönderebilirsiniz, utf8 için boş gönderseniz yeterli.]
+     * @param  array  $optionArray 
      */
     function connect($optionArray=array()) {
         $dsnStatement = 'mysql:host=' . $this->db_host . ';dbname=' . $this->db_name.';charset=' . $this->db_charset;
 
         if( empty($optionArray)){
-            //default olarak utf8 set names çalışıyor her query de,
-            //kalıcı (persistant) bağlantı açıyoruz.
-            //error mode açık.
             $options = array(
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
                 PDO::ATTR_PERSISTENT    => TRUE,
