@@ -1,7 +1,5 @@
 <?php
     ini_set('max_execution_time', 0);
-    error_reporting(E_ALL ^ E_NOTICE);
-    ini_set('error_reporting', E_ALL ^ E_NOTICE);
 
     require_once 'inc/config.php';
     require_once 'inc/db.php';
@@ -71,6 +69,7 @@
                         $database->execute();
                     }
                 } else {
+
                     /**
                      * Yeni gelen orderların  sisteme ekleme işlemleri
                      */
@@ -170,13 +169,14 @@
                             $database->execute();
                         }
                     }
-    
+
                     if(!empty($detayData->order_items)) {
                         foreach($detayData->order_items as $oiKey => $oiArray) {
                             /**
                              * Order items kontrol işlemi
                              */
                             if(!empty($oiArray->id)) {
+
                                 $database->query('SELECT * FROM order_items WHERE brand_id = :id');
                                 $database->bind(':id', $oiArray->id);
                                 $rowsOrderItems = $database->getRows();
@@ -196,7 +196,7 @@
                                     $database->bind(':updated_at', replace_date($oiArray->updated_at));
                                     $database->execute();
                                 }
-
+                                
                                 /**
                                  * Product kontrol işlemi
                                  */
