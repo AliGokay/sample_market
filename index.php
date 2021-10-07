@@ -1,4 +1,4 @@
-<?php
+<?php echo 'test';
     ini_set('max_execution_time', 0);
     error_reporting(E_ALL ^ E_NOTICE);
     ini_set('error_reporting', E_ALL ^ E_NOTICE);
